@@ -31,19 +31,17 @@ for(var p in bind) {
 
 var formats = {
 	jpeg    : [1,2],  // format : arguments' length [open, save]
-	png     : [1,2], 
-	gif     : [1,1], 
-	gd      : [1,1], 
-	gd2     : [1,1], 
+	png     : [1,2],
+	gif     : [1,1],
+	gd      : [1,1],
+	gd2     : [1,1],
 	gd2Part : [5,-1],
 	WBMP    : [1,1]
 };
 
 function open_func(format, len) {
 	return function() {
-		if (!(arguments instanceof Array))
-    		    arguments = Array.prototype.slice.call(arguments);
-		var args     = [].concat(arguments);
+		var args = [].concat(Array.prototype.slice.call(arguments));
 		var filename = args.shift();
 		var callback = args[len-1];
 
@@ -55,7 +53,7 @@ function open_func(format, len) {
 
 		fs.readFile(filename, 'binary', function(err, data) {
 			if(err) throw err;
-			callback(bind['createFrom'+format+'Ptr'](data));
+			callback(null, bind['createFrom'+format+'Ptr'](data));
 		});
 	}
 }
@@ -64,7 +62,7 @@ function save_func(format, len) {
 	format = format.toLowerCase();
 
 	return function() {
-		var args     = [].concat(arguments);
+		var args     = [].concat(Array.prototype.slice.call(arguments));
 		var filename = args.shift();
 		var callback = args[len-1];
 		if (typeof callback != 'function') {
