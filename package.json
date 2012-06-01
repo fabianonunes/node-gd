@@ -1,9 +1,9 @@
 {
-  "name": "gd",
+  "name": "node-gd",
   "author": "Taegon Kim",
   "description": "GD bindings for Node.js",
   "version": "0.0.2",
-  "contributors": [ 
+  "contributors": [
     { "name": "Taegon Kim", "email": "gonom9@gmail.com" },
     { "name": "Dudochkin Victor", "email": "<blacksmith@gogoo.ru>" }
   ],
